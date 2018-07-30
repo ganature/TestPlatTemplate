@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="static/css/bootstrap.css" rel="stylesheet" />
+	<link href="static/css/bootstrap-select.min.css" rel="stylesheet">
 	<!-- 可选的Bootstrap主题文件（一般不使用） -->
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
-	<!--bootstrap-select插件引入-->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-	<!-- <script src="https//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js "></script> -->
+
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-	<!-- <script src="static/js/jquery-3.3.1.min.js"></script> -->
-	<script src="static/js/jquery/jquery-1.11.3.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
 	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="./static/js/bootstrap-select.min.js"></script>
+
 	<style>
 		.div-brand {
 			height: 30px;
@@ -204,30 +201,33 @@
 									<input class="form-control" id='project_name' name='project_name' placeholder="请输入项目名称" value="" />
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-md-2 control-label" for="project_type">项目类型</label>
-								<div class=" col-md-4 btn-group">
-									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-										请选择项目类型
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<li>
-											<a href="#">功能</a>
-										</li>
-										<li>
-											<a href="#">另一个功能</a>
-										</li>
-										<li>
-											<a href="#">其他</a>
-										</li>
-										<li class="divider"></li>
-										<li>
-											<a href="#">分离的链接</a>
-										</li>
-									</ul>
+							<div class="form-group ">
+								<label class="col-md-2 control-label" for="project_detail">项目描述</label>
+								<div class="col-md-4 " >
+									<input class="form-control text-success" id='project_detail' name='project_detail' placeholder="请输入项目描述" value="" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">项目类型</label>
+								<div class="col-md-2">
+									<select class="selectpicker" id='project_select'>
+										<option>1</option>
+										<option>2</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="project_remark">项目备注</label>
+								<div class="col-md-4">
+									<input class="form-control" id='project_remark' name='project_remark' placeholder="请输入项目备注" value="" />
+								</div>
+							</div>
+							<div class="form-group" style="float: right;padding-right: 60px;">
+								<button class="btn btn-primary" type="submit">确认</button>
+								<button class="btn btn-primary" type="reset">重置</button>
+								<button class="btn btn-primary" onclick="javascript:location.href='project_list.html'" type="button">返回</button>
+							</div>
+
 						</form>
 					</div>
 
