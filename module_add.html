@@ -18,8 +18,6 @@
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="./static/js/bootstrap-select.min.js"></script>
 	<script src='static/js/bootstrapValidator.min.js'></script>
-
-
 	<style>
 		.div-brand {
 			height: 30px;
@@ -37,7 +35,7 @@
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="active">
-						<a href="#">项目</a>
+						<a href="#">模块</a>
 					</li>
 					<li>
 						<a href="#">测试库</a>
@@ -115,13 +113,13 @@
 					<li>
 						<a href="#projectManage" class="nav-header collapsed" data-toggle="collapse">
 							<i class="glyphicon glyphicon-cog"></i>
-							项目管理
+							模块管理
 							<span class="pull-right glyphicon glyphicon-chevron-down"></span>
 						</a>
 						<ul id="projectManage" class="nav nav-list collapse  secondmenu" style="height: 0px;margin-left: 20px;">
 							<li>
 								<a href="project_list.html" <i class="glyphicon glyphicon-user " style="background-color: #23C1CD;">
-									</i>项目管理</a>
+									</i>模块管理</a>
 							</li>
 							<li>
 								<a href="module_list">
@@ -192,30 +190,46 @@
 		<div class="col-md-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">编辑项目</h3>
+					<h3 class="panel-title">编辑模块</h3>
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="" method="post">
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="project_name">项目名称</label>
+							<label class="col-md-2 control-label" for="project_name">模块名称</label>
 							<div class="col-md-4">
-								<input class="form-control" id='project_name' name='project_name' placeholder="请输入项目名称" value="" />
+								<input class="form-control" id='project_name' name='project_name' placeholder="请输入模块名称" value="" />
 							</div>
 						</div>
 						<div class="form-group ">
-							<label class="col-md-2 control-label" for="project_detail">项目描述</label>
+							<label class="col-md-2 control-label" for="project_detail">模块描述</label>
 							<div class="col-md-4 ">
-								<input class="form-control text-success" id='project_detail' name='project_detail' placeholder="请输入项目描述" value="" />
+								<input class="form-control text-success" id='project_detail' name='project_detail' placeholder="请输入模块描述" value="" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label">项目类型</label>
+							<label class="col-md-2 control-label">所属项目</label>
 							<div class="col-md-2">
 								<select class="selectpicker" id='project_select'>
 									<option value="">1</option>
 									<option value="">2</option>
 								</select>
 							</div>
+							<script>
+								$.ajax({
+									// get请求地址  
+									url: basePath,
+									dataType: "json",
+									success: function (data) {
+										var optArr = [];
+										for (var i = 0; i < data.length; i++) {
+											$('.selectpicker').append("<option value=" + data[i].userName + ">" + data[i].userName + "</option>");
+										}
+										// 缺一不可  
+										$('#project_select').selectpicker('refresh');
+										$('#project_select').selectpicker('render');
+									}
+								});
+							</script>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">创建人</label>
@@ -224,9 +238,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label" for="project_remark">项目备注</label>
+							<label class="col-md-2 control-label" for="project_remark">模块备注</label>
 							<div class="col-md-4">
-								<input class="form-control" id='project_remark' name='project_remark' placeholder="请输入项目备注" value="" />
+								<input class="form-control" id='project_remark' name='project_remark' placeholder="请输入模块备注" value="" />
 							</div>
 						</div>
 
@@ -235,6 +249,30 @@
 							<button class="btn btn-primary" type="reset">重置</button>
 							<button class="btn btn-primary" onclick="javascript:location.href='project_list.html'" type="button">返回</button>
 						</div>
+						<table class="bootstrap-table">
+							<tbody>
+								<thead>
+									<tr>
+										<th>名称</th>
+										<th>编号</th>
+									</tr>
+									<tr>
+										<td>
+											<a class="detail-icon" href="#">
+												<i class="glyphicon glyphicon-minus icon-minus"></i>
+											</a>
+										</td>
+										<td>1
+										</td>
+										<td>2</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>4</td>
+									</tr>
+								</thead>
+							</tbody>
+						</table>
 						<script>
 							$(function () {
 								$('form').bootstrapValidator({
@@ -248,26 +286,26 @@
 									},
 									fields: {
 										project_name: {
-											message: '项目名称验证失败',
+											message: '模块名称验证失败',
 											validators: {
 												notEmpty: {
-													message: '项目名称不能为空'
+													message: '模块名称不能为空'
 												},
 												stringLength: {
 													min: 6,
 													max: 18,
-													message: '项目名称长度必须在6到18位之间'
+													message: '模块名称长度必须在6到18位之间'
 												},
 												regexp: {
 													regexp: /^[a-zA-Z0-9_]+$/,
-													message: '项目名称只能包含大写、小写、数字和下划线'
+													message: '模块名称只能包含大写、小写、数字和下划线'
 												}
 											}
 										},
 										project_detail: {
 											validators: {
 												notEmpty: {
-													message: '项目详情不能为空'
+													message: '模块详情不能为空'
 												}
 											}
 										},
